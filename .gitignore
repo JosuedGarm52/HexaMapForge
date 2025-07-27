@@ -1,0 +1,28 @@
+*.ff
+
+# Entorno virtual
+venv/
+
+# Archivos de configuración de PyCharm o VSCode
+.idea/
+.vscode/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos del sistema de control de versiones (OneDrive, etc.)
+*.sync
+*.swp
+*.swo

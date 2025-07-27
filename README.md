@@ -52,3 +52,4 @@ Este proyecto aún no tiene licencia oficial. Próximamente se definirá bajo un
 ---
 
 Gracias por tu interés en **HexaMapForge**.
+
