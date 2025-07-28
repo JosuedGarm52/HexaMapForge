@@ -1,7 +1,7 @@
+import math
 from PySide6.QtWidgets import QGraphicsPolygonItem, QGraphicsItem
 from PySide6.QtGui import QPolygonF, QBrush, QColor
 from PySide6.QtCore import QPointF
-import math
 
 
 class HexTile(QGraphicsPolygonItem):
