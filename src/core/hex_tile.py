@@ -25,11 +25,11 @@ class HexTile(QGraphicsPolygonItem):
         self.setPos(pos.x(), pos.y())
 
     def hex_to_pixel(self):
-        """Convierte coordenadas hex a posición en píxeles (orientación plana arriba)."""
-        width = self.size * 2
-        height = math.sqrt(3) * self.size
-        x = self.size * 3/2 * self.q
-        y = self.size * math.sqrt(3) * (self.r + self.q / 2)
+        """Posición en píxeles para hexágono puntiagudo arriba (vertical)"""
+        width = math.sqrt(3) * self.size
+        height = self.size * 2
+        x = width * (self.q + self.r/2)
+        y = height * 3/4 * self.r
         return QPointF(x, y)
 
     def create_hexagon(self):
