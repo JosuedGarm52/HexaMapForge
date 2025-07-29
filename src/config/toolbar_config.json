@@ -1,16 +1,38 @@
 [
   {
-    "title": "Herramientas",
+    "title": "Archivo",
     "children": [
-      { "label": "Pincel", "action": "select_brush" },
-      { "label": "Borrar", "action": "select_eraser" }
+      { "label": "Nuevo", "action": "new_map" },
+      { "label": "Guardar", "action": "save_map" },
+      { "label": "Cargar", "action": "load_map" }
+    ]
+  },
+  {
+    "title": "Edición",
+    "children": [
+      { "label": "Deshacer", "action": "undo" },
+      { "label": "Rehacer", "action": "redo" }
     ]
   },
   {
     "title": "Vista",
     "children": [
       { "label": "Centrar", "action": "center_view" },
-      { "label": "Reiniciar Zoom", "action": "reset_zoom" }
+      { "label": "Zoom 100%", "action": "reset_zoom" }
+    ]
+  },
+  {
+    "title": "Personalización",
+    "children": [
+      { "label": "Color fondo", "action": "set_background_color" },
+      { "label": "Modo noche", "action": "toggle_dark_mode" }
+    ]
+  },
+  {
+    "title": "Ayuda",
+    "children": [
+      { "label": "Versión", "action": "show_version" },
+      { "label": "Créditos", "action": "show_credits" }
     ]
   }
 ]
