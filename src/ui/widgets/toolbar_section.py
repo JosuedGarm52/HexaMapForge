@@ -1,6 +1,3 @@
-
-
-
 from PySide6.QtWidgets import QWidget, QPushButton, QScrollArea, QHBoxLayout, QVBoxLayout, QFrame
 from PySide6.QtCore import Qt, QEvent
 from PySide6.QtGui import QFontMetrics
@@ -17,26 +14,58 @@ class ToolbarSection(QWidget):
         self.actions = actions or {}
 
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.setStyleSheet("background-color: #cccccc; border-radius: 6px;")
+        # Fondo del contenedor padre (gris claro, sin borde)
+        self.setStyleSheet("background-color: #e0e0e0; border: none;")
         self.setMouseTracking(True)
 
         # Layout vertical: título + hijos
         self.layout = QVBoxLayout(self)
-        self.layout.setContentsMargins(6, 6, 6, 6)
-        self.layout.setSpacing(4)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setSpacing(0)
 
-        # Botón padre (centrado, alto según texto + padding)
-        self.title_btn = QPushButton(title)
-        self.title_btn.setStyleSheet(self._style_parent_btn())
-        self.title_btn.setCursor(Qt.PointingHandCursor)
-        self.title_btn.setFixedHeight(self._calc_height(title))
-        self.layout.addWidget(self.title_btn)
+        # Barra título padre (barra completa gris más oscuro)
+        self.title_bar = QWidget()
+        self.title_bar.setStyleSheet("background-color: #b0b0b0;")  # gris más oscuro
+        self.title_bar_layout = QHBoxLayout(self.title_bar)
+        self.title_bar_layout.setContentsMargins(10, 4, 10, 4)  # padding horizontal y vertical
+        self.title_bar_layout.setSpacing(0)
 
         # Hijos (invisibles por defecto)
+        self.title_btn = QPushButton(title)
+        self.title_btn.setStyleSheet("""
+            QPushButton {
+                background: transparent;
+                border: none;
+                color: #222;
+                font-weight: bold;
+                padding: 0px;
+            }
+            QPushButton:hover {
+                color: #000;
+            }
+        """)
+        self.title_btn.setCursor(Qt.PointingHandCursor)
+        self.title_btn.setFixedHeight(self._calc_height(title))
+        self.title_bar_layout.addWidget(self.title_btn)
+        self.layout.addWidget(self.title_bar)
+
+        # Botones hijos con borde cuadrado y fondo blanco, dentro de la barra padre
         self.child_buttons = []
         for label in children:
             btn = QPushButton(label)
-            btn.setStyleSheet(self._style_child_btn())
+            btn.setStyleSheet("""
+                QPushButton {
+                    background-color: white;
+                    border: 1px solid #999999;
+                    padding: 4px 12px;
+                    margin: 4px 10px;  /* margen para separarlo de los bordes y título */
+                    border-radius: 2px;
+                    text-align: left;
+                }
+                QPushButton:hover {
+                    background-color: #e6e6e6;
+                }
+            """)
             btn.setCursor(Qt.PointingHandCursor)
             btn.setVisible(False)
             action = self.actions.get(label, label.lower())

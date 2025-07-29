@@ -20,7 +20,7 @@ class TopToolbar(QWidget):
 
         # Altura reservada y color de fondo
         self.setFixedHeight(72)
-        self.setStyleSheet("background-color: #f0f0f0;")
+        self.setStyleSheet("background-color: #f0f0f0;")  # fondo gris claro para toda la barra
         self.setContentsMargins(0, 0, 0, 0)
 
         # Flechas de desplazamiento
