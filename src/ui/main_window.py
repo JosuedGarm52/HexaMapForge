@@ -22,6 +22,13 @@ class MainWindow(QMainWindow):
         # --- Crear barra superior ---
         self.toolbar = TopToolbar(on_action=self.handle_toolbar_action)
 
+        self.toolbar = TopToolbar(on_action=self.handle_toolbar_action)
+        self.toolbar.add_section("Terreno", action="terrain")
+        self.toolbar.add_section("Decoración", action="decor")
+        self.toolbar.add_section("Clima", action="weather")
+        self.toolbar.add_section("Entidades", action="entities")
+        self.toolbar.add_section("Opciones", action="options")
+
         # --- Crear vista de escena ---
         self.scene = QGraphicsScene(self)
         self.view = QGraphicsView(self.scene)
