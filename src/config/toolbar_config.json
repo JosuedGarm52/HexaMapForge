@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Herramientas",
+    "children": [
+      { "label": "Pincel", "action": "select_brush" },
+      { "label": "Borrar", "action": "select_eraser" }
+    ]
+  },
+  {
+    "title": "Vista",
+    "children": [
+      { "label": "Centrar", "action": "center_view" },
+      { "label": "Reiniciar Zoom", "action": "reset_zoom" }
+    ]
+  }
+]
