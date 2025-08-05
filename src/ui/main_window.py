@@ -8,7 +8,8 @@ from PySide6.QtGui import QPalette, QColor
 
 from src.config import GridConfig
 from src.core.map_generator import MapGenerator
-from src.ui.widgets.top_toolbar import TopToolbar
+
+from src.ui.widgets.Toolbar.Toolbar import Toolbar
 
 
 class MainWindow(QMainWindow):
@@ -20,7 +21,15 @@ class MainWindow(QMainWindow):
 
     def init_ui(self):
         # --- Crear barra superior ---
-        self.toolbar = TopToolbar(on_action=self.handle_toolbar_action)
+        self.toolbar = Toolbar(
+            config_path="src/config/toolbar_config.json",
+            on_action_callback=self.handle_toolbar_action,
+            background_color="#f0f0f0",
+            header_bg="#bbbbbb",
+            child_bg="#e6e6e6",
+            max_visible=3,             # opcional: cuántos headers mostrar a la vez si quieres forzarlo
+            orientation="horizontal"    # o "vertical"
+        )
 
         # --- Crear vista de escena ---
         self.scene = QGraphicsScene(self)
