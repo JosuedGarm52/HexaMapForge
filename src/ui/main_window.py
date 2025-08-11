@@ -1,10 +1,12 @@
 # src/ui/main_window.py
 from PySide6.QtWidgets import (
     QMainWindow, QGraphicsScene, QGraphicsView,
-    QGraphicsItemGroup, QWidget, QVBoxLayout
+    QGraphicsItemGroup, QWidget, QVBoxLayout,
+    QMessageBox
 )
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPalette, QColor
+import traceback
 
 from src.config import GridConfig
 from src.core.map_generator import MapGenerator
@@ -17,9 +19,14 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("HexaMapForge")
         self.resize(1000, 800)
-        self.init_ui()
+        try:
+            self.setup_ui()
+        except Exception as e:
+            print("Error durante la inicialización de la UI:", e)
+            traceback.print_exc()
+            self.show_error_dialog(str(e))
 
-    def init_ui(self):
+    def setup_ui(self):
         # --- Crear barra superior ---
         self.toolbar = Toolbar(
             config_path="src/config/toolbar_config.json",
@@ -27,8 +34,8 @@ class MainWindow(QMainWindow):
             background_color="#f0f0f0",
             header_bg="#bbbbbb",
             child_bg="#e6e6e6",
-            max_visible=3,             # opcional: cuántos headers mostrar a la vez si quieres forzarlo
-            orientation="horizontal"    # o "vertical"
+            max_visible=3,
+            orientation="horizontal"
         )
 
         # --- Crear vista de escena ---
@@ -76,4 +83,11 @@ class MainWindow(QMainWindow):
 
     def handle_toolbar_action(self, action_name):
         print(f"Acción del toolbar: {action_name}")
-        # Aquí puedes manejar herramientas seleccionadas, color, etc.
+
+    def show_error_dialog(self, message):
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle("Error al iniciar la aplicación")
+        dlg.setIcon(QMessageBox.Critical)
+        dlg.setText("Ocurrió un error al inicializar la aplicación:")
+        dlg.setInformativeText(message)
+        dlg.exec()
