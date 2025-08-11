@@ -6,25 +6,25 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPalette, QColor
-import traceback
 
 from src.config import GridConfig
 from src.core.map_generator import MapGenerator
 
 from src.ui.widgets.Toolbar.Toolbar import Toolbar
+from src.ui.error_handler import ErrorHandler
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.error_handler = ErrorHandler(self)
         self.setWindowTitle("HexaMapForge")
         self.resize(1000, 800)
+
         try:
             self.setup_ui()
         except Exception as e:
-            print("Error durante la inicialización de la UI:", e)
-            traceback.print_exc()
-            self.show_error_dialog(str(e))
+            self.error_handler.handle(e)
 
     def setup_ui(self):
         # --- Crear barra superior ---
