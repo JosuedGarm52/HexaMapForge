@@ -69,7 +69,7 @@ class ToolbarAdapter(QWidget):
         svg_path = icons_dir / svg_name
 
         # DEBUG: imprimir ruta y existencia (puedes quitar después)
-        print(f"[ToolbarAdapter] buscando icono {svg_name} en: {svg_path} (existe={svg_path.exists()})")
+        # print(f"[ToolbarAdapter] buscando icono {svg_name} en: {svg_path} (existe={svg_path.exists()})")
 
         if svg_path.exists():
             icon = QIcon(str(svg_path))
